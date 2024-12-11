@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Employee Management</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f8f9fa;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 20px;
+            font-size:14px;
+        }
+        h1 {
+            color: #333;
+            margin-bottom: 20px;
+            animation: fadeIn 1s ease-in;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: center;
+        }
+        th {
+            background-color: #007bff;
+            color: white;
+        }
+        td {
+            background-color: #ffffff;
+            transition: background-color 0.3s;
+        }
+        td:hover {
+            background-color: #f1f1f1;
+        }
+        a {
+            display: inline-block;
+            margin-bottom: 10px;
+            text-decoration: none;
+            color: #007bff;
+            font-size: 1rem;
+            transition: color 0.3s;
+        }
+        
+         .ad {
+            color: white;
+            font-weight: bold;
+            padding:10px;
+            background-color:blue;
+             border-radius:20px;
+        }
+        .ad:hover {
+            color: white;
+            background-color:skyblue;
+        }
+        
+         .edit {
+            color: white;
+            font-weight: bold;
+            padding:10px;
+            background-color: green;
+             border-radius:20px;
+        }
+        .edit:hover {
+            color: white;
+            background-color: blue;
+        }
+        .delete {
+            color: white;
+            font-weight: bold;
+            background-color:red ;
+            padding:10px;
+            border-radius:20px;
+            
+        }
+        .delete:hover {
+            color: blue;
+            background-color:#da3545 ;
+            
+        }
+        a:hover {
+            color: #0056b3;
+            
+        }
+        
+          @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+    </style>
+</head>
+<body>
+<h1>Employee Management</h1>
+<a class="ad" href="/add">Add Employee</a>
+<table>
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Department</th>
+            <th>Salary</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr th:each="employee : ${employees}">
+            <td th:text="${employee.id}"></td>
+            <td th:text="${employee.name}"></td>
+            <td th:text="${employee.department}"></td>
+            <td th:text="${employee.salary}"></td>
+            <td>
+                <a class="edit" th:href="@{/edit/{id}(id=${employee.id})}">Edit</a>
+                <a  class="delete" th:href="@{/delete/{id}(id=${employee.id})}" onclick="return confirm('Are you sure?')">Delete</a>
+            </td>
+        </tr>
+    </tbody>
+</table>
+</body>
+</html>
+        
